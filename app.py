@@ -81,7 +81,7 @@ def initialize_page():
         
         /* Custom button styling */
         .stButton>button {
-            background-color: var(--accent-color);
+            background-color: transparent;
             color: white;
             border: none;
             border-radius: 4px;
@@ -201,7 +201,7 @@ def main():
     # Sidebar
     with st.sidebar:
         st.image("https://cdn-icons-png.flaticon.com/512/8943/8943377.png", width=150)
-        st.title("Soldiers Assistant")
+        st.title("Echo-9")
         
         # System initialization
         with st.spinner("Initializing protocol database..."):
@@ -244,7 +244,7 @@ def main():
     # Main content area
     st.markdown("""
         <div class="header-container">
-            <h1>Military Protocol Assistant</h1>
+            <h1>Echo-9</h1>
             <p>Emergency Response and Field Operations Support System</p>
         </div>
     """, unsafe_allow_html=True)
