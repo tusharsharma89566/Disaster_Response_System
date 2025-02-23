@@ -188,7 +188,7 @@ def initialize_page():
 def initialize_llm():
     return ChatGroq(
         groq_api_key=groq_api_key,
-        model_name="llama-3.3-70b-versatile"
+        model_name="llama-3.3-70b-specdec"
     )
 
 def convert_speech_to_text():
