@@ -194,28 +194,33 @@ def initialize_llm():
 def convert_speech_to_text():
     recognizer = sr.Recognizer()
     
-    with sr.Microphone() as source:
-        st.info("Adjusting for ambient noise. Please wait...")
-        recognizer.adjust_for_ambient_noise(source, duration=2)
-        st.info("Please speak something...")
-        
-        try:
-            audio = recognizer.listen(source, timeout=5)
-            st.info("Processing speech...")
-            
-            text = recognizer.recognize_google(audio)
-            # Auto-send the voice query
-            if text:
-                st.session_state.current_query = text
-                st.session_state.should_send = True  # Flag to trigger send
-            return text
-            
-        except sr.WaitTimeoutError:
-            return "No speech detected"
-        except sr.RequestError:
-            return "Could not connect to speech recognition service"
-        except sr.UnknownValueError:
-            return "Could not understand the audio"
+    try:
+        import pyaudio  # Ensure PyAudio is installed
+        with sr.Microphone() as source:
+            st.info("Adjusting for ambient noise. Please wait...")
+            recognizer.adjust_for_ambient_noise(source, duration=2)
+            st.info("Please speak something...")
+
+            try:
+                audio = recognizer.listen(source, timeout=5)
+                st.info("Processing speech...")
+
+                text = recognizer.recognize_google(audio)
+                if text:
+                    st.session_state.current_query = text
+                    st.session_state.should_send = True
+                return text
+
+            except sr.WaitTimeoutError:
+                return "No speech detected"
+            except sr.RequestError:
+                return "Could not connect to speech recognition service"
+            except sr.UnknownValueError:
+                return "Could not understand the audio"
+    
+    except OSError:
+        st.error("Microphone not available. Please check your device settings.")
+        return "Microphone not available"
 
 def initialize_prompt():
     return ChatPromptTemplate.from_template("""
@@ -387,7 +392,7 @@ def main():
                     st.markdown("""
                         <div style="background-color: var(--bg-tertiary); padding: 1rem; margin: 0.5rem 0; border-radius: 8px; border: 1px solid var(--border);">
                             <div style="color: var(--accent); margin-bottom: 0.5rem;">Query: {}</div>
-                            <div style="color: var(--text-primary);">Response: {}</div>
+                            <div style="color: var(--text-primary);"><strong>Response:</strong> <br>{}</div>
                             <div style="color: var(--text-secondary); font-size: 0.8rem; text-align: right; margin-top: 0.5rem;">
                                 Response time: {:.2f}s
                             </div>
