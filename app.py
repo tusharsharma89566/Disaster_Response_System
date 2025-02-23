@@ -304,6 +304,7 @@ def main():
             if st.button(label, key=f"quick_{label}"):
                 st.session_state.current_query = f"{query}?"
                 st.session_state.should_send = True
+                st.rerun()
     
     # Middle Column - Chat Interface
     with middle_col:
