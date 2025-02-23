@@ -304,7 +304,6 @@ def main():
             if st.button(label, key=f"quick_{label}"):
                 st.session_state.current_query = f"{query}?"
                 st.session_state.should_send = True
-                st.rerun()
     
     # Middle Column - Chat Interface
     with middle_col:
@@ -320,7 +319,7 @@ def main():
         with status_col3:
             st.markdown("**Database:** 🟢 Active")
         
-        # Input Area
+        # Input Area with Enter key handling
         input_col1, input_col2, input_col3 = st.columns([3, 1, 1])
         with input_col1:
             question = st.text_input(
@@ -328,12 +327,19 @@ def main():
                 value=st.session_state.get('current_query', ''),
                 placeholder="Enter your query...",
                 label_visibility="collapsed",
-                key="query_input"
+                key="query_input",
+                on_change=lambda: setattr(st.session_state, 'should_send', True) if st.session_state.query_input else None
             )
+            # Update current_query when input changes
+            if question:
+                st.session_state.current_query = question
+        
         with input_col2:
             speak_btn = st.button("🎙️ Speak")
         with input_col3:
             send_btn = st.button("Send ➤")
+            if send_btn and st.session_state.current_query:
+                st.session_state.should_send = True
         
         # Handle voice input and auto-send
         if speak_btn:
@@ -343,8 +349,8 @@ def main():
                 st.session_state.should_send = True
                 st.rerun()
         
-        # Process query (both text and voice)
-        if (send_btn or st.session_state.get('should_send', False)) and st.session_state.get('current_query'):
+        # Process query when triggered by Enter, Send button, or voice
+        if st.session_state.get('should_send', False) and st.session_state.get('current_query'):
             with st.spinner("Analysing Protocols..."):
                 try:
                     document_chain = create_stuff_documents_chain(llm, initialize_prompt())
