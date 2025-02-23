@@ -8,3 +8,4 @@ langchain-google-genai
 faiss-cpu
 PyMuPDF
 pypdf
+speech_recognition
