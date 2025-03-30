@@ -1,8 +1,8 @@
-streamlit==1.42.2
-langchain
-langchain_groq
-langchain_core
-langchain_google_genai
-langchain_community
+streamlit==1.44.0
+langchain==0.3.21
+langchain_groq==0.3.1
+langchain_core==0.3.49
+langchain_google_genai==2.1.2
+langchain_community==0.3.20
 dotenv
-speech_recognition
+speech_recognition==3.14.2
