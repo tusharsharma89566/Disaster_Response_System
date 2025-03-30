@@ -1,0 +1,32 @@
+# Deployment Instructions for Disaster Response System on Streamlit
+
+## Step 1: Prepare Your Application
+Ensure that your `app.py` and `requirements.txt` files are ready and contain all necessary changes for the disaster response system.
+
+## Step 2: Create a GitHub Repository
+1. Go to [GitHub](https://github.com/) and sign in or create an account.
+2. Click on the "+" icon in the top right corner and select "New repository".
+3. Name your repository (e.g., `disaster-response-system`) and provide a description.
+4. Choose "Public" or "Private" as per your preference.
+5. Click "Create repository".
+
+## Step 3: Upload Your Files
+1. Clone the repository to your local machine or upload files directly through the GitHub interface.
+2. Ensure that both `app.py` and `requirements.txt` are in the root of the repository.
+
+## Step 4: Deploy on Streamlit
+1. Go to [Streamlit Sharing](https://streamlit.io/sharing) and sign in or create an account.
+2. Click on "New app".
+3. Connect your GitHub account if prompted.
+4. Select the repository you created (e.g., `disaster-response-system`).
+5. Specify the main file as `app.py`.
+6. Click on the "Deploy" button.
+
+## Step 5: Test Your Application
+Once deployed, visit the provided URL to test your application and ensure it is functioning correctly.
+
+## Troubleshooting
+- If you encounter any issues during deployment, check the logs provided by Streamlit for error messages.
+- Ensure that all required libraries are listed in `requirements.txt`.
+
+Feel free to reach out if you need further assistance!

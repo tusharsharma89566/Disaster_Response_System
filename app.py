@@ -20,7 +20,8 @@ os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 
 def initialize_page():
     st.set_page_config(
-        page_title="Military Protocol Assistant",
+        page_title="Disaster Relief System",
+
         page_icon="🎖️",
         layout="wide",
         initial_sidebar_state="collapsed"
@@ -224,7 +225,8 @@ def convert_speech_to_text():
 
 def initialize_prompt():
     return ChatPromptTemplate.from_template("""
-    You are a **Military Emergency Protocol Assistant**, responsible for providing **strictly accurate** guidance based on **official military protocol documents**.  
+    You are a **Disaster Relief Assistant**, responsible for providing **strictly accurate** guidance based on **official disaster relief protocols**.  
+
 
     **STRICT RESPONSE GUIDELINES:**  
     1. **Use ONLY the official protocol documents** to generate responses. No external assumptions, opinions, or alternative advice are allowed.  
@@ -296,13 +298,14 @@ def main():
     with left_col:
         st.markdown("### Quick Access Protocols")
         protocols = {
-            "📡 Communications": "What to do during communications equipment failure?",
-            "🔥 Fire Emergency": "How to respond to a fire outbreak in the field?",
-            "💥 Explosive Threat": "What are the immediate steps when encountering an explosive or bomb threat?",
-            "🌡️ Heat Exhaustion & Dehydration": "What are the signs and first aid measures for heat exhaustion?",
-            "⚠️ Biological or Chemical Attack": "How to respond in case of a suspected biological or chemical attack?",
-            "❄️ Hypothermia & Cold Injuries": "How to prevent and treat hypothermia in extreme cold conditions?",
-            "📍 Navigation": "What are the survival steps if lost in an unfamiliar environment?"
+        "🌪️ Natural Disaster Response": "What are the immediate steps during a natural disaster?",
+        "🚨 Evacuation Procedures": "How to safely evacuate during an emergency?",
+        "🩹 First Aid Measures": "What are the first aid measures for injuries during a disaster?",
+        "🔥 Fire Safety": "How to respond to a fire outbreak in a disaster situation?",
+        "⚠️ Emergency Communication": "What to do during communication failures in emergencies?",
+        "🧊 Cold Weather Injuries": "How to prevent and treat cold weather injuries?",
+        "🌡️ Heat-Related Illnesses": "What are the signs and first aid measures for heat-related illnesses?"
+
         }
         
         for label, query in protocols.items():
